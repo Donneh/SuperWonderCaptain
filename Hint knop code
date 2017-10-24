@@ -1,8 +1,8 @@
 import tkinter
 import os
+import sys
 from tkinter import*
 
-#Tkinter scherm aanroepen
 master = Tk()
 
 Label(text="Hints nodig?").pack()
@@ -10,11 +10,11 @@ Label(text="Hints nodig?").pack()
 separator = Frame(height=2, bd=1, relief=SUNKEN)
 separator.pack(fill=X, padx=5, pady=5)
 
-#Hint button in Tkinter scherm aaroepen
 def callback():
-    print("click!")
+    print("Wil je eerst een beschrijving van het spel of wil je gelijk een hint waarbij je 3 punten verliest?")
 
 b = Button(master, text="Klik hier!", command=callback)
 b.pack()
 
 mainloop()
+
