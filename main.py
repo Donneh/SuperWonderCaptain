@@ -1,11 +1,12 @@
-import datetime
+from datetime import datetime, timedelta
 from tkinter import *
 from tkinter import ttk
+
 
 def inputHighscore():
     name = input("What is your name? ")
     score = input("What is your score? ")
-    time = str(datetime.datetime.now())
+    time = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
     string = ','.join([name, score, time])
     file = open("highscore.txt", "a")
     file.write(string + '\n')
@@ -27,6 +28,19 @@ def getHighscores():
     return dict
 
 
+# def highscorepastdays(days):
+#     highscores = getHighscores()
+#     date = datetime.today() - timedelta(days=days)
+#     scores = {}
+#     index = 0
+#     for score in highscores.items():
+#         if score['datetime'] > date:
+#             scores[index] = score
+#             index += 1
+#     return scores
+#
+#
+# print(highscorepastdays(7))
 
 root = Tk()
 frame = Frame(root, width=200, height=100)
@@ -34,7 +48,7 @@ tree = ttk.Treeview(frame)
 
 tree['columns'] = (0,1,2)
 tree['show'] = 'headings'
-tree.column(0, width=100)
+tree.column(0, width=100, height=100)
 tree.heading(0, text="Name")
 tree.column(1, width=100)
 tree.heading(1, text="Score")
