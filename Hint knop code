@@ -16,6 +16,9 @@ def callback():
 b = Button(master, text="Klik hier!", command=callback)
 b.pack()
 
+stop = Button(b, text="Klik hier!",command="break")
+b.pack
+stop.grid()
 mainloop()
 
 master = Tk()
