@@ -5,6 +5,7 @@ from tkinter.ttk import *
 import os
 import sys
 
+
 def inputHighscore():
     name = input("What is your name? ")
     score = input("What is your score? ")
