@@ -15,7 +15,62 @@ def scoretoevoegen(naam, punten):
 
 
 def hintophalen(superheld):
-    return "De hint is: " + superheld['name']
+    print("1: beschrijving")
+    print("2: Comic hint")
+    print("3: Events hint")
+    print("4: Series hint")
+    antwoord = int(input("Welk soort hint wil je? "))
+    if antwoord == 1:
+        hint = beschrijvinghint(superheld)
+    elif antwoord == 2:
+        hint = comichint(superheld)['name']
+    elif antwoord == 3:
+        hint = eventshint(superheld)['name']
+    elif antwoord == 4:
+        hint = serieshint(superheld)['name']
+
+    if hint:
+        return hint
+    else:
+        print("Deze hint is niet beschikbaar, kies opnieuw")
+        hintophalen(superheld)
+    # return beschrijvinghint(superheld)
+    # return "De hint is: " + superheld['name']
+
+
+def comichint(superheld):
+    if superheld["comics"]["returned"] > 0:
+        randomnumber = random.randrange(0, superheld["comics"]["returned"])
+
+        return superheld["comics"]["items"][randomnumber]
+
+    return False
+
+
+def beschrijvinghint(superheld):
+    if superheld["description"]:
+        return superheld["description"]
+
+    return False
+
+
+def serieshint(superheld):
+    if superheld["series"]["returned"] > 0:
+        randomnumber = random.randrange(0, superheld["series"]["returned"])
+
+        return superheld["series"]["items"][randomnumber]
+
+    return False
+
+
+def eventshint(superheld):
+    if superheld["events"]["returned"] > 0:
+        randomnumber = random.randrange(0, superheld["events"]["returned"])
+
+        return superheld["events"]["items"][randomnumber]
+
+    return False
+
 
 def querybuilder(query, offset, limit):
     ts = str(time.time())
@@ -42,7 +97,7 @@ def willekeurigeheld():
     response = requests.get(querybuilder("characters", willekeuriggetal, 1))
     resultaat = json.loads(response.text)
 
-    return resultaat
+    return resultaat["data"]["results"][0]
 
 
 def game():
@@ -53,9 +108,11 @@ def game():
     # In deze while loop blijft het programma vragen naar een nieuwe superheld tot dat stop in wordt gevoerd
     while stoppen != "stop":
         punten = 25
-        superheld = willekeurigeheld()["data"]["results"][0]
+        superheld = willekeurigeheld()
         antwoord = superheld["name"]
-        print(hintophalen(superheld))
+        print(antwoord)
+        print(beschrijvinghint(superheld))
+
         naam = input("Welke superheld gok je")
 
         # in deze while loop blijft het programma naar dezelfde superheld vragen als je het niet goed raad
