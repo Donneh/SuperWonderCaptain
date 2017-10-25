@@ -1,25 +1,27 @@
-ffrom tkinter import *
+from tkinter import *
 
-window = Tk()
+window = Tk() #Hint scherm wordt aangeroepen
 Label(text="Hints nodig?").pack()
 
 def close_window():
     window.destroy()
 
-frame = Frame(window)
+frame = Frame(window) #Button wordt aangeroepen
 frame.pack()
 button = Button(frame, text="Klik hier!", command=close_window)
 button.pack()
 
 window.mainloop()
 
-master = Tk()
+master = Tk() #Keuzescherm wordt aangeroepen
 Label(text="Wil je een hint waarbij je 3 punten verliest?").pack()
 
 separator = Frame(height=2, bd=1, relief=SUNKEN)
 separator.pack(fill=X, padx=5, pady=5)
 
-c = Button(master, text="Hint (-3 punten)", command=close_window)
+c = Button(master, text="Hint (-3 punten)", command=close_window) #Button wordt aangeroepen
 c.pack()
+
+#hierna wordt een beschrijving over de superheld gegeven en speler verliest 3 punten
 
 mainloop()
