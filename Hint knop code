@@ -1,30 +1,28 @@
-import tkinter
-import os
-import sys
-from tkinter import*
+from tkinter import *
 
-master = Tk()
-
+window = Tk()
 Label(text="Hints nodig?").pack()
 
-separator = Frame(height=2, bd=1, relief=SUNKEN)
-separator.pack(fill=X, padx=5, pady=5)
+def close_window():
+    window.destroy()
 
-def callback():
-    print("Wil je eerst een beschrijving van het spel of wil je gelijk een hint waarbij je 3 punten verliest?")
+frame = Frame(window)
+frame.pack()
+button = Button(frame, text="Klik hier!", command=close_window)
+button.pack()
 
-b = Button(master, text="Klik hier!", command=callback)
-b.pack()
-
-stop = Button(b, text="Klik hier!",command="break")
-b.pack
-stop.grid()
-mainloop()
+window.mainloop()
 
 master = Tk()
-Label(text="Wil je eerst een beschrijving van het spel of wil je gelijk een hint waarbij je 3 punten verliest?").pack()
+Label(text="Wil je eerst een beschrijving van de superheld of wil je gelijk een hint waarbij je 3 punten verliest?").pack()
 
 separator = Frame(height=2, bd=1, relief=SUNKEN)
 separator.pack(fill=X, padx=5, pady=5)
+
+b = Button(master, text="Beschrijving van de superheld", command=close_window)
+b.pack()
+
+c = Button(master, text="Hint (-3 punten)", command=close_window)
+c.pack()
 
 mainloop()
