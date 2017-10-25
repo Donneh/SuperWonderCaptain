@@ -97,7 +97,12 @@ def willekeurigeheld():
     response = requests.get(querybuilder("characters", willekeuriggetal, 1))
     resultaat = json.loads(response.text)
 
-    return resultaat["data"]["results"][0]
+    held = resultaat["data"]["results"][0]
+
+    if held["description"] != "":
+        return held
+    else:
+        return willekeurigeheld()
 
 
 def game():
