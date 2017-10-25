@@ -8,7 +8,7 @@ def close_window():
 
 frame = Frame(window)
 frame.pack()
-button = Button (frame, text = "Klik hier!", command = close_window)
+button = Button(frame, text="Klik hier!", command=close_window)
 button.pack()
 
 window.mainloop()
@@ -18,5 +18,11 @@ Label(text="Wil je eerst een beschrijving van het spel of wil je gelijk een hint
 
 separator = Frame(height=2, bd=1, relief=SUNKEN)
 separator.pack(fill=X, padx=5, pady=5)
+
+b = Button(master, text="Beschrijving", state=NORMAL)
+b.pack()
+
+c = Button(master, text="Hint (-3 punten)", state=NORMAL)
+c.pack()
 
 mainloop()
