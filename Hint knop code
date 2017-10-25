@@ -1,7 +1,7 @@
 from tkinter import *
 
 window = Tk() #Hint scherm wordt aangeroepen
-Label(text="Hints nodig?").pack()
+Label(text="Hints nodig voor (-3 punten?)").pack()
 
 def close_window():
     window.destroy()
@@ -14,7 +14,7 @@ button.pack()
 window.mainloop()
 
 master = Tk() #Keuzescherm wordt aangeroepen
-Label(text="Wil je een hint waarbij je 3 punten verliest?").pack()
+Label(text="Je ontvangt nu een hint waarbij je 3 punten verliest").pack()
 
 separator = Frame(height=2, bd=1, relief=SUNKEN)
 separator.pack(fill=X, padx=5, pady=5)
@@ -24,4 +24,3 @@ c = Button(master,text="Hint (-3 punten)", foreground="red", command=close_windo
 #hierna wordt een beschrijving over de superheld gegeven en speler verliest 3 punten
 
 mainloop()
-
