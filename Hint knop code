@@ -19,8 +19,7 @@ Label(text="Wil je een hint waarbij je 3 punten verliest?").pack()
 separator = Frame(height=2, bd=1, relief=SUNKEN)
 separator.pack(fill=X, padx=5, pady=5)
 
-c = Button(master, text="Hint (-3 punten)", command=close_window) #Button wordt aangeroepen
-c.pack()
+c = Button(master, text="Hint (-3 punten)", command=close_window).pack() #Button wordt aangeroepen
 
 #hierna wordt een beschrijving over de superheld gegeven en speler verliest 3 punten
 
