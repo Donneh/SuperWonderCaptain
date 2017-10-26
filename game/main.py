@@ -7,10 +7,14 @@ from datetime import datetime, timedelta
 from tkinter import *
 from PIL import ImageTk, Image
 
+antwoord = ""
+
 
 # Deze functie brengt de speler naar het volgende scherm, achtergrond en de startknop
 def tweede_scherm():
-    global achtergrond, label_achtergrond, canvas, naam, entry_box
+    global achtergrond, label_achtergrond, canvas, naam, entry_box, antwoord
+    antwoord = willekeurigeheld(True)
+
     canvas = Canvas(root, height=650, width=500).pack()
     achtergrond = PhotoImage(file="tweede_achtergrond.gif")
     label_achtergrond = Label(root, image=achtergrond)
@@ -25,7 +29,7 @@ def tweede_scherm():
 
 # Creatie van het derde scherm en van de opties waar de speler uit kan kiezen
 def derde_scherm():
-    global entry_box, achtergrond, label_achtergrond
+    global entry_box, achtergrond, label_achtergrond, antwoord
 
     # Als de speler een ongeldige naam invoert, start het spel niet
     if entry_box.get() is "":
@@ -36,20 +40,42 @@ def derde_scherm():
         print("Succes met de uitdaging, " + str(entry_box.get().capitalize()) + "!")
         achtergrond = PhotoImage(file="derde_achtergrond.gif")
         label_achtergrond = Label(root, image=achtergrond).place(x=0, y=0, relwidth=1, relheight=1)
-        punten_label = Label(root, font=("arial", 15, "bold"), bg="white", text="Punten: " + str(punten)).place(x=10,
-                                                                                                                y=150)
+        punten_label = Label(root, font=("arial", 15, "bold"), bg="white", text="Punten: " + str(punten)).place(x=10, y=150)
 
-        # Creatie van de opties waar de speler uit kan kiezen (meerkeuze)
-        optie1 = Radiobutton(label_achtergrond, text=willekeurigeheld()['name'], value=1).place(x=20, y=225)
-        optie2 = Radiobutton(label_achtergrond, text=willekeurigeheld()['name'], value=2).place(x=20, y=250)
-        optie3 = Radiobutton(label_achtergrond, text=willekeurigeheld()['name'], value=3).place(x=20, y=275)
-        optie4 = Radiobutton(label_achtergrond, text=willekeurigeheld()['name'], value=4).place(x=20, y=300)
-        optie5 = Radiobutton(label_achtergrond, text=willekeurigeheld()['name'], value=5).place(x=20, y=325)
-        optie6 = Radiobutton(label_achtergrond, text=willekeurigeheld()['name'], value=6).place(x=20, y=350)
-        optie7 = Radiobutton(label_achtergrond, text=willekeurigeheld()['name'], value=7).place(x=20, y=375)
-        optie8 = Radiobutton(label_achtergrond, text=willekeurigeheld()['name'], value=8).place(x=20, y=400)
-        optie9 = Radiobutton(label_achtergrond, text=willekeurigeheld()['name'], value=9).place(x=20, y=425)
-        optie10 = Radiobutton(label_achtergrond, text=willekeurigeheld()['name'], value=10).place(x=20, y=450)
+        antwoorden = [
+            antwoord['name'],
+            willekeurigeheld()['name'],
+            willekeurigeheld()['name'],
+            willekeurigeheld()['name'],
+            willekeurigeheld()['name'],
+            willekeurigeheld()['name'],
+            willekeurigeheld()['name'],
+            willekeurigeheld()['name'],
+            willekeurigeheld()['name'],
+            willekeurigeheld()['name']
+        ]
+        print(antwoord['name'])
+
+        random.shuffle(antwoorden)
+        index = 0
+        gok = StringVar()
+        for answer in antwoorden:
+            Radiobutton(label_achtergrond, text=answer, value=answer, variable=gok).place(x=20, y=(225 + index * 25))
+            index += 1
+        ok_button = Button(label_achtergrond, font=("arial", 9, "bold"), text="BEVESTIGEN", command=lambda: check_antwoord(gok.get())).place(x=250, y=250)
+
+        hint_button = Button(label_achtergrond, font=("arial", 9, "bold"), fg="OrangeRed3", text="Hint(-3 punten").place(x=462, y=450)
+
+
+def check_antwoord(gok):
+    global antwoord, punten
+    print(antwoord["name"], gok)
+    if antwoord["name"] == gok:
+        punten += 25
+        print("Goede antwoord")
+        derde_scherm()
+
+    return False
 
 
 def scoretoevoegen(naam, punten):
