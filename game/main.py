@@ -27,8 +27,9 @@ def speler_aanmaak_scherm():
 
 # Creatie van het derde scherm en van de opties waar de speler uit kan kiezen
 def vraag_scherm():
-    global entry_box, achtergrond, label_achtergrond, antwoord
+    global entry_box, achtergrond, label_achtergrond
 
+    antwoord = willekeurigeheld(True)
     # Als de speler een ongeldige naam invoert, start het spel niet
     if entry_box.get() is "":
         print("Voer een geldige naam in.")
@@ -60,14 +61,14 @@ def vraag_scherm():
         for answer in antwoorden:
             Radiobutton(label_achtergrond, text=answer, value=answer, variable=gok).place(x=20, y=(225 + index * 25))
             index += 1
-        ok_button = Button(label_achtergrond, font=("arial", 9, "bold"), text="BEVESTIGEN", command=lambda: check_antwoord(gok.get())).place(x=250, y=250)
+        ok_button = Button(label_achtergrond, font=("arial", 9, "bold"), text="BEVESTIGEN", command=lambda: check_antwoord(antwoord, gok.get())).place(x=250, y=250)
 
         hint_button = Button(label_achtergrond, font=("arial", 9, "bold"), fg="OrangeRed3", text="Hint(-3 punten").place(x=462, y=450)
 
 
 
-def check_antwoord(gok):
-    global antwoord, punten
+def check_antwoord(antwoord, gok):
+    global punten
     print(antwoord["name"], gok)
     if antwoord["name"] == gok:
         punten += 25
