@@ -18,6 +18,7 @@ Spelregels
 - Je kan voor 3 punten een hint vragen die informatie verschaft over de superheld.
 - Als je de superheld goed raad krijg je de resterende punten. Daarna wordt de volgende superheld gegenereerd.
 - Als je op stop drukt worden alle punten die je hebt verdient opgeslagen in de database en eindigt het programma.
+- Tijdens het spelen kan je het highscore register opvragen 
 
 Bedankt voor het spelen van ons spel!
 Veel plezier namens ons!
