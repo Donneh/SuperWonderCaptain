@@ -159,6 +159,7 @@ def derde_scherm():
                       ).place(x=533, y=472)
 
 
+# Haal highscores op.
 def score_ophalen():
     dict = {}
     with open('highscore.txt', 'r') as file:
@@ -174,6 +175,7 @@ def score_ophalen():
     return dict
 
 
+# Kijk of het antwoord goed was.
 def check_antwoord(gok, antwoord):
     global punten
     print(gok, antwoord['name'])
@@ -185,6 +187,7 @@ def check_antwoord(gok, antwoord):
         punten -= 1
 
 
+# Deze fucntie helpt bij het opbouwen van de url.
 def querybuilder(query, offset, limit):
     ts = str(time.time())
     base_url = "http://gateway.marvel.com:80/v1/public/"
@@ -198,6 +201,7 @@ def querybuilder(query, offset, limit):
     return base_url + query + "?ts=" + ts + "&apikey=" + public_key + "&hash=" + md5digest
 
 
+# Haal alle helden op uit de Marvel API.
 def allehelden():
     response = requests.get(querybuilder("characters", False, False))
     resultaat = json.loads(response.text)
@@ -205,6 +209,7 @@ def allehelden():
     return resultaat
 
 
+# Haalt een willekeurige held op uit de Marvel API.
 def willekeurigeheld(beschrijving=False, offset=1):
     willekeuriggetal = random.randrange(0, allehelden()["data"]["total"])
     response = requests.get(querybuilder("characters", willekeuriggetal, offset))
@@ -220,6 +225,7 @@ def willekeurigeheld(beschrijving=False, offset=1):
         return held
 
 
+# Roept de juiste hintfuncite op
 def hintophalen(superheld):
     randhint = random.randrange(1, 4)
 
@@ -238,6 +244,7 @@ def hintophalen(superheld):
         return hintophalen(superheld)
 
 
+# Een hint met de comci waarin de held zit.
 def comichint(superheld):
     if superheld["comics"]["returned"] > 0:
         randomnumber = random.randrange(0, superheld["comics"]["returned"])
@@ -247,6 +254,7 @@ def comichint(superheld):
     return False
 
 
+# Een beschrijving van de held.
 def beschrijvinghint(superheld):
     if superheld["description"]:
         return superheld["description"]
@@ -254,6 +262,7 @@ def beschrijvinghint(superheld):
     return False
 
 
+# Haal serie hint op.
 def serieshint(superheld):
     if superheld["series"]["returned"] > 0:
         randomnumber = random.randrange(0, superheld["series"]["returned"])
@@ -263,6 +272,7 @@ def serieshint(superheld):
     return False
 
 
+# Haal hint op met de events waar de held in zat.
 def eventshint(superheld):
     if superheld["events"]["returned"] > 0:
         randomnumber = random.randrange(0, superheld["events"]["returned"])
@@ -272,6 +282,7 @@ def eventshint(superheld):
     return False
 
 
+# Voeg een score toe aan de highscores.
 def scoretoevoegen(gebruikersnaam, punten):
     tijd = str(datetime.now().strftime("%Y-%m-%d %H:%M"))
     string = ','.join([gebruikersnaam, str(punten), tijd])
@@ -280,6 +291,7 @@ def scoretoevoegen(gebruikersnaam, punten):
         file.write(string + '\n')
 
 
+# Stop het spel.
 def spel_stoppen(gebruikersnaam, punten):
     scoretoevoegen(gebruikersnaam, punten)
     root.destroy()
