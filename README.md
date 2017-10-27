@@ -2,10 +2,15 @@
 V1H projectgroep 4
 
 Benodigde imports voor in Pycharm:
-- PIL
-- tkinter*
-- ImageTk
-
+- tkinter* 
+- PIL 
+- ImageTk 
+- hashlib 
+- time 
+- requests 
+- json 
+- random 
+- datetim
 Hoe op te starten:
 - Download de map Super Wonder Captain met de GIF bestanden van de achtergronden erin.
 - Start PyCharm op en open het programma in PyCharm
