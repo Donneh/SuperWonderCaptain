@@ -3,32 +3,30 @@ import time
 import requests
 import json
 import random
-from datetime import datetime, timedelta
+from datetime import datetime
 from tkinter import *
 from PIL import ImageTk, Image
 
-antwoord = ""
-
 
 # Deze functie brengt de speler naar het volgende scherm, achtergrond en de startknop
-def tweede_scherm():
-    global achtergrond, label_achtergrond, canvas, naam, entry_box, antwoord
-    antwoord = willekeurigeheld(True)
+def speler_aanmaak_scherm():
+    global achtergrond, label_achtergrond, canvas, naam, entry_box
 
     canvas = Canvas(root, height=650, width=500).pack()
     achtergrond = PhotoImage(file="tweede_achtergrond.gif")
     label_achtergrond = Label(root, image=achtergrond)
     label_achtergrond.place(x=0, y=0, relwidth=1, relheight=1)
 
+
     # Vragen naar de naam van de speler en creëren van de start knop
-    naam_vraag = Label(root, text="Naam:", font=("arial", 17, "bold"), bg="gray9", fg="red").place(x=4, y=117)
+    Label(root, text="Naam:", font=("arial", 17, "bold"), bg="gray9", fg="red").place(x=4, y=117)
     entry_box = Entry(root, width=18, bg="dark slate gray")
     entry_box.place(x=60, y=118)
-    start_button = Button(root, text="Start", width=5, height=1, command=derde_scherm).place(x=60, y=143)
+    Button(root, text="Start", width=5, height=1, command=vraag_scherm).place(x=60, y=143)
 
 
 # Creatie van het derde scherm en van de opties waar de speler uit kan kiezen
-def derde_scherm():
+def vraag_scherm():
     global entry_box, achtergrond, label_achtergrond, antwoord
 
     # Als de speler een ongeldige naam invoert, start het spel niet
@@ -67,13 +65,14 @@ def derde_scherm():
         hint_button = Button(label_achtergrond, font=("arial", 9, "bold"), fg="OrangeRed3", text="Hint(-3 punten").place(x=462, y=450)
 
 
+
 def check_antwoord(gok):
     global antwoord, punten
     print(antwoord["name"], gok)
     if antwoord["name"] == gok:
         punten += 25
         print("Goede antwoord")
-        derde_scherm()
+        vraag_scherm()
 
     return False
 
@@ -221,22 +220,21 @@ def nieuwegebruiker():
         nieuwegebruiker = input("wilt iemand anders spelen")
 
 
+
 # Maken van het Tkinter window
 root = Tk()
 entry_box = Entry()
+canvas = Canvas(root, height=0, width=500)
+
+achtergrond = PhotoImage(file="beginscherm.gif")
+label_achtergrond = Label(root, image=achtergrond)
+label_achtergrond.place(x=1, y=0, relwidth=1, relheight=0.85)
 
 # Het aantal punten waar elke speler mee start
 punten = 0
 
-canvas = Canvas(root, height=0, width=500)
-
-achtergrond = PhotoImage(file="beginscherm.gif")
-
-label_achtergrond = Label(root, image=achtergrond)
-label_achtergrond.place(x=1, y=0, relwidth=1, relheight=0.85)
-
 button = Button(root, font=("arial", 25, "bold"), fg="yellow2", text="Ben je er klaar voor?", bg="hot pink",
-                command=tweede_scherm)
+                command=speler_aanmaak_scherm)
 button.pack(side="bottom")
 
 root.title("SuperWonderCaptain")
@@ -246,4 +244,3 @@ root.resizable(0, 0)
 canvas.pack()
 
 root.mainloop()
-
