@@ -9,6 +9,7 @@ Benodigde imports voor in Pycharm:
 Hoe op te starten:
 - Download de map Super Wonder Captain met de GIF bestanden van de achtergronden erin.
 - Start PyCharm op en open het programma in PyCharm
+- Klik bij het programma in PyCharm op run
 - Als alles correct is uitgevoerd opent de game en ben je klaar om te spelen
 
 Spelregels
