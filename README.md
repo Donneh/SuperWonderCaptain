@@ -12,7 +12,7 @@ Hoe op te starten:
 - Klik bij het programma in PyCharm op run
 - Als alles correct is uitgevoerd opent de game en ben je klaar om te spelen
 
-Spelregels
+Spelregels:
 - In de game Super Wonder Captain is het de bedoeling om een random gegenereerde superheld uit de Marvel API te raden.
 - Per vraag vallen er 25 punten te verdienen. Per poging die je fout beantwoord krijg je 1 punt aftrek.
 - Je kan voor 3 punten een hint vragen die informatie verschaft over de superheld.
