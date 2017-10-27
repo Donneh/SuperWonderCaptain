@@ -11,6 +11,7 @@ Benodigde imports voor in Pycharm:
 - json 
 - random 
 - datetim
+
 Hoe op te starten:
 - Download de map Super Wonder Captain met de GIF bestanden van de achtergronden erin.
 - Start PyCharm op en open het programma in PyCharm
